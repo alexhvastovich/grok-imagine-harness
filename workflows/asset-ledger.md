@@ -11,6 +11,7 @@ tool arguments. A planned filename is not proof that an image or live asset exis
 | Named character master | Name/reference name, inspected image file/hash, registration status; live reference ID only if observed |
 | Shot plan | Shot/scene number, purpose, framing/lens/angle, duration, camera/axis/eyeline, action, dialogue/sound, cut intent and previous-shot dependency |
 | Planned FIRST/LAST | Explicit role, versioned file/hash, visual review, observed upload asset ID and matching thumbnail; never infer roles from upload order |
+| Planned INTERMEDIATE (when needed) | Versioned file/hash, required action beat, intended output timestamp, observed attachment role and actual UI pin time; recheck after duration changes |
 | Actual rendered endpoints | Extracted FIRST/LAST files/hashes and source take ID; distinguish actual output from planned targets |
 | Raw take | Shot/take ID, playable asset ID, native downloaded file/hash, exact prompt/input roles/settings, measured format/duration, separate visual/audio review |
 | Rejected take | Original identity plus rejection reason; retain original media and usable audio rather than deleting the source |

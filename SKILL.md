@@ -59,13 +59,21 @@ direction, props/hands, lighting, dialogue and sound in the shot plan. Use
 [asset-ledger.md](workflows/asset-ledger.md) to track shot, take and asset roles.
 Pass this stage when the cast/set and ordered shot/cut plan are explicit.
 
-## 2. Check continuity across ALL image pairs
+## 2. Check continuity across ALL planned frames
 
 Use the active image-generation skill/tool for endpoint images. Generate and
 inspect every shot's FIRST and intended LAST before any video generation. Review
 the entire storyboard beside the character masters and set plan: identities,
 wardrobe, body/depth scale, perspective, props, anatomy, light and screen direction.
 Reject broken composition before uploading current keepers.
+
+For every shot, decide whether a middle action state needs an INTERMEDIATE
+frame. If needed, create and inspect it with FIRST/LAST before motion, record
+its intended beat/time and verify the actual attachment role and Keyframe time
+in the live UI. Read [frame controls](workflows/frame-controls.md). Set duration
+first and recheck the pin after changes; prompt text alone does not configure it.
+Include planned middle frames in storyboard review and adjacent canvas rows.
+Local readiness helpers do not automatically attach or validate middle frames.
 
 Every shot needs both real files, even when it ends in a deliberate cut. Write ALL
 motion/dialogue prompts only after the image plan is inspected; follow
@@ -77,9 +85,13 @@ the shot currently selected. `assertProductionReady` in [pages.mjs](pages.mjs)
 checks existing packet/cast/pair/prompt flags; visual and coverage review still
 require inspection, not a successful function return.
 
-## 3. Distinguish continuations from cuts
+## 3. Plan smooth joins: continuations and cuts
 
-Read [frame continuity](workflows/frame-continuity.md). Mark every boundary:
+Read [frame continuity](workflows/frame-continuity.md),
+[join planning](workflows/join-planning.md) and
+[editing grammar](workflows/editing-grammar.md). Record an outgoing/incoming
+action-phase match, picture cut and sound handoff for every adjacent pair
+before generation. Refine these against the actual rendered takes. Mark every boundary:
 
 - Continuous action in the same camera: A -> B, then accepted actual B -> C.
   Use the exact decoded last-frame file of the accepted preceding take as the
@@ -92,6 +104,11 @@ Read [frame continuity](workflows/frame-continuity.md). Mark every boundary:
 Planned endpoint control does not promise a pixel-identical generated end. Review
 the rendered result. Endpoints extracted from a processed keeper supersede raw
 endpoints for subsequent joins, while the raw source remains available.
+
+Matching endpoint images alone do not establish smooth motion. Check velocity,
+screen position/direction and whether an action freezes, repeats or restarts.
+Use intermediate frames to constrain a necessary beat inside a shot; review the
+handoff between shots separately. After edits, recheck both neighboring joins.
 
 ## 4. Verify every browser action and generate one shot
 
@@ -147,6 +164,14 @@ flows remain unverified until a real edited output is inspected. Record that sta
 accurately. After any edit, re-extract endpoints and update affected joins.
 
 ## 6. Review the sequence and hand it off
+
+Refine every join using [join planning](workflows/join-planning.md) and
+[editing grammar](workflows/editing-grammar.md): compare candidate outgoing/incoming
+trim frames, retain readable cause/consequence, and design sound tails/leads with
+appropriate perspective. Record chosen source ranges and transition/audio intent.
+Inspect frames on both sides, then watch the passage and whole film with sound
+at normal speed. The local assembler makes straight joins; it does not perform
+these editorial decisions or prove smoothness.
 
 Read [review/edit](workflows/review-and-edit.md). Review entire takes, consecutive
 frames where needed, full-resolution defects and both sides of each cut. Check

@@ -75,27 +75,81 @@ Start with a small production brief, for example:
 > Read AGENTS.md and SKILL.md. Help me create a two-shot animation of an original
 > robot finding a flower, in 16:9, with sound effects and no dialogue or music.
 > Establish the named project and character references, plan both shots, and
-> inspect every FIRST/LAST pair before generating any video. Use the actual
-> accepted last frame for the continuous second shot. Keep a take ledger and
-> review the resulting sequence before assembly.
+> inspect every FIRST/LAST pair and any needed middle keyframe before generating
+> video. Verify middle-frame timing in the UI. Use the actual accepted last frame
+> for the continuous second shot. Plan and refine the motion and sound handoff,
+> keep a take ledger, and review the resulting sequence before assembly.
 
 ## How to use it
 
 1. **Plan:** lock the story, cast, visual style, set geography, audio intent and
    motivated shot coverage. Establish a named Grok project and references.
-2. **Prepare every shot:** create and inspect all FIRST/LAST image pairs, write
-   motion prompts, populate the project, and organize adjacent scene rows.
-3. **Check continuity:** distinguish continuous action from a deliberate cut.
-   Confirm actual attachments and frame roles, rather than relying on prompt text.
+2. **Prepare every shot:** create and inspect FIRST/LAST images and any needed
+   INTERMEDIATE (middle) frame. Plan its action beat and timestamp, write motion
+   prompts, populate the project, and organize FIRST / MIDDLE / LAST / VIDEO rows.
+3. **Plan each video-to-video join:** distinguish continuous action from a
+   deliberate cut; match action phase, direction and persistent scene state.
+   Confirm actual attachments, frame roles and middle-frame timing in the UI.
 4. **Generate one job at a time:** verify the live settings and resulting output.
    Keep raw takes separate from accepted clips and respect your review cadence.
 5. **Repair and track:** preserve sources; log rejected takes, edits and asset
    roles. Re-extract endpoints after an edit and update dependent shots.
-6. **Review and assemble:** inspect motion and cuts, listen at normal speed, then
-   build and review the film. A successful decode is not creative acceptance.
+6. **Refine transitions and assemble:** compare outgoing/incoming motion, select
+   exact trim points, and shape sound bridges. Build the film, then watch every
+   join and the whole sequence at normal speed with sound. A successful decode
+   is not creative acceptance.
 
 The detailed task router and acceptance conditions are in [SKILL.md](SKILL.md).
 Read [known issues](ISSUES.md) before reusing a browser recipe.
+
+### Middle frames: control the action inside a shot
+
+Use **FIRST → INTERMEDIATE → LAST** when an important action state needs a
+specific visual constraint: a hand releasing an object, an impact, or a foot
+making contact. Decide this for every shot during preparation. A middle frame
+is optional when the endpoints already describe a simple, readable action;
+when needed, create and inspect it with the other planned images before motion.
+
+Attach the actual image through **Add intermediate frame**, verify its
+**Intermediate frame** role, and set **Keyframe time** in the UI. Set duration
+first and recheck the middle timestamp after any duration change. Naming a file
+or writing a time in the prompt does not attach or configure a keyframe. A middle
+frame constrains an action beat; it does not guarantee timing or smooth motion.
+Review the resulting take for pauses, warping and unwanted slow motion.
+
+The observed attachment and timing steps are in
+[frame controls](workflows/frame-controls.md#prepare-a-shot) and
+[intermediate timestamps](workflows/frame-controls.md#set-an-actual-intermediate-timestamp).
+The generic page-object helpers and local readiness checks do not automatically
+attach or verify middle frames; use and inspect the documented live UI controls.
+
+### Smooth transitions between clips
+
+Plan the join before generation, then refine it using the actual rendered clips:
+
+1. **Same-camera continuation:** use the accepted, decoded ending as the next
+   FIRST; match motion direction, speed and action phase across the boundary.
+   Check for a held endpoint, duplicated gesture or restart even if images match.
+2. **Camera-angle cut:** stage matching action, eyelines, screen direction, scale,
+   lighting, props and damage. Choose outgoing/incoming frames that carry the
+   movement forward without repeating or skipping its important event.
+3. **Edit the handoff:** compare several candidate trim points in context. Use a
+   motivated hard cut or a transition suited to a change of time/place. Preserve
+   sources and record exact source ranges and the reason for the chosen cut.
+4. **Bridge sound:** retain appropriate ambience or a deliberate outgoing sound
+   tail (L-cut) / incoming sound lead (J-cut). Check sync, distance and perspective;
+   prevent doubled impacts, chopped tails and unintended silence.
+5. **Review:** inspect consecutive frames around both sides, watch the passage
+   and full film at normal speed, and listen. Recheck neighboring joins after
+   changing a shot. Record unresolved source limitations explicitly.
+
+The working guides are [join planning](workflows/join-planning.md),
+[editing grammar](workflows/editing-grammar.md),
+[frame continuity](workflows/frame-continuity.md), and
+[Stitch timeline/export](workflows/stitch-timeline.md). This is an editorial
+workflow: `continuity.py assemble` only joins already prepared clips. It does
+not choose trim points, synthesize transitions, create sound bridges, or certify
+that a join looks and sounds smooth.
 
 ### Local frame and assembly tools
 

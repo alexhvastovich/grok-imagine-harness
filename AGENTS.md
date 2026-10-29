@@ -72,3 +72,19 @@ and explicitly record that network evidence is unavailable. This is partial UI
 evidence, not a zero-request or local-only finding. Continue the production task;
 do not treat optional recorder failure as product failure. Rebuild the map when
 structured captures are added, preserving historical runs and their coverage.
+
+## Intermediate frames and clip joins
+
+For every planned shot, decide whether a middle action beat needs an INTERMEDIATE
+image. Prepare and inspect needed middle images with FIRST/LAST before motion;
+verify the actual attachment role and Keyframe time after setting duration. Keep
+FIRST / MIDDLE (when used) / LAST / keeper adjacent. See workflows/frame-controls.md.
+A prompt naming the image/time and a successful readiness check do not prove the
+middle attachment is configured.
+
+Plan every neighboring clip handoff before generation and refine it on real takes.
+Read workflows/join-planning.md and workflows/editing-grammar.md. Match action
+phase, velocity, screen direction and persistent state; compare exact trim points;
+shape appropriate sound bridges. Inspect consecutive cut frames, watch the full
+passage at normal speed and listen. Recheck both joins after changing a shot.
+Matching endpoint files or a successful concat alone does not establish smoothness.
