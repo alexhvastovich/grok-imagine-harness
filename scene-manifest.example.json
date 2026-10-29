@@ -1,0 +1,50 @@
+{
+  "title": "Continuous action example",
+  "project_name": "Replace with the new named project",
+  "project_url": "Set from the current Grok project",
+  "project_details_verified": false,
+  "project_packet_uploaded": false,
+  "shot_plan_verified": false,
+  "storyboard_review": "pending",
+  "project_files_verified": [],
+  "characters": [{"name": "Replace with character name", "reference_name": "Replace with saved reference name", "master": "output/references/character-master.png", "registered": false}],
+  "shots": [
+    {
+      "id": "s01-t01",
+      "boundary": "cut",
+      "duration_target": 6,
+      "shot_plan": {"purpose": "Establish the action", "size": "medium-wide", "angle": "eye level", "lens_equivalent_mm": 50, "camera_movement": "locked", "eyeline": "", "action_axis": "", "next_cut": "continuous action"},
+      "first_frame": "output/frames/A.png",
+      "planned_last_frame": "output/frames/B.png",
+      "actual_last_frame": null,
+      "clip": null,
+      "raw_asset_id": null,
+      "processed_asset_id": null,
+      "review": "pending",
+      "review_checks": {"whole_clip_visual": "pending", "boundary": "pending", "dialogue": "pending", "listening": "pending"},
+      "takes": [],
+      "canvas_nodes": [],
+      "image_review": "pending",
+      "continuity": {"cast": [], "wardrobe": "", "props_and_hands": "", "camera": "", "screen_direction": "", "lighting": ""},
+      "motion_prompt": "Write the causal change from A to B."
+    },
+    {
+      "id": "s02-t01",
+      "boundary": "continuous",
+      "duration_target": 6,
+      "shot_plan": {"purpose": "Continue the same action", "size": "medium-wide", "angle": "same camera", "lens_equivalent_mm": 50, "camera_movement": "locked", "eyeline": "", "action_axis": "same as prior shot", "next_cut": "set deliberately"},
+      "first_frame": "output/frames/B.png",
+      "planned_last_frame": "output/frames/C.png",
+      "actual_last_frame": null,
+      "clip": null,
+      "raw_asset_id": null,
+      "processed_asset_id": null,
+      "review": "pending",
+      "review_checks": {"whole_clip_visual": "pending", "boundary": "pending", "dialogue": "pending", "listening": "pending"},
+      "takes": [],
+      "canvas_nodes": [],
+      "image_review": "pending",
+      "motion_prompt": "Continue from B to C. If shot one drifts, use its actual last frame here."
+    }
+  ]
+}
