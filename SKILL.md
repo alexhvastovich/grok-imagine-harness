@@ -1,6 +1,6 @@
 ---
 name: grok-imagine-harness
-description: Direct and edit multi-shot films in Grok Imagine using named character references, planned first/last images, verified browser actions, a compact canvas and an asset ledger. Use for Grok film production, targeted edits or maintaining this harness.
+description: Direct and edit multi-shot films in Grok Imagine using project-specific references, planned first/last images, verified browser actions, a compact canvas and an asset ledger. Use for Grok film production, targeted edits or maintaining this harness.
 ---
 
 # Grok Imagine production driver
@@ -9,6 +9,24 @@ This is the main operating file. Resolve links relative to this folder. Read onl
 the relevant modules below, then follow their click paths in the current live UI.
 The assistant directs images, composition, continuity and editing; Grok generates
 motion. User corrections override historical examples and defaults.
+
+## Scope and project inputs
+
+Use this harness for any idea or project. Shared guidance covers the order of
+actions, continuity, live UI navigation, evidence and editing. The project brief
+supplies the creative choices and deliverable:
+
+Concept -> brief/shot plan -> references/frames -> project packet and canvas ->
+configured per-shot motion -> edit/trim/stitch/sound -> review.
+
+Treat scene/cast counts, style, each shot's need for a middle frame, source
+lengths, aspect, resolution, dialogue/music/ambient sound and delivery as project
+inputs. Select the browser/runtime from the available documented tools; verify
+its capabilities and the live Grok settings rather than assuming a fixed setup.
+Follow the user's chosen production order over the default sequence, including
+local-image preparation before live project creation when requested. Preserve
+actual attachment-role, pin and settings checks before each motion submission.
+Dated productions and example identifiers illustrate evidence, not defaults.
 
 ## Execution index and resume tags
 
@@ -35,7 +53,8 @@ Keep identifiers separate and consistent in notes, manifests and canvas labels:
 as `STAGE:04 SHOT:s01 ROLE:MIDDLE TAKE:t01 STATUS:prepared`. A prepared frame or
 draft is not a submitted job; a playable result still needs its recorded review.
 Record which review was performed and any pending checks. These execution tags
-do not change the channel queue's status values or schema.
+do not change the existing project tracker's status values or schema.
+`SHOT:s01` is an example identifier; the project determines how many shots exist.
 
 ## Choose the task
 
@@ -71,7 +90,9 @@ permission or a supported contract for replaying private endpoints.
 
 Read [project preparation](workflows/project-preparation.md),
 [shot design](workflows/shot-design.md) and [staging](workflows/cinematic-staging.md).
-Create or confirm the named project, locked script/details and named cast masters.
+Create or confirm the locked brief, named production and the reference masters
+its subjects/set require. Establish the live project at the point chosen in the
+project plan; character masters apply when the project includes a cast.
 Break the script into beats, then design motivated wide, medium, insert, close-up
 and reverse/reaction coverage. No fixed shot count: each shot needs a dramatic
 purpose, camera/size, action, duration and intended next cut.
@@ -88,9 +109,10 @@ Pass this stage when the cast/set and ordered shot/cut plan are explicit.
 
 ## 2. Check continuity across ALL planned frames
 
-Use the active image-generation skill/tool for endpoint images. Generate and
-inspect every shot's FIRST and intended LAST before any video generation. Review
-the entire storyboard beside the character masters and set plan: identities,
+Use the project's chosen image-generation or supplied-image workflow. By default,
+create/import and inspect every shot's FIRST and intended LAST before the first
+video; follow a different user-chosen preparation order when specified. Review
+the storyboard beside the relevant reference masters and set plan: identities,
 wardrobe, body/depth scale, perspective, props, anatomy, light and screen direction.
 Reject broken composition before uploading current keepers.
 
@@ -219,7 +241,7 @@ Map/harness-only requests do not authorize new generations or publishing.
 When adapting the creator's supplied Director pack, see
 [adopted practices and local adaptations](workflows/director-pack-adaptation.md).
 Its format presets, intake rules and runtime folder examples do not override
-the user's locked brief, existing authorization or the channel's conventions.
+the user's locked brief, existing authorization or the project's conventions.
 
 For a new or changed UI operation capture DOM, visible elements/bounds, screenshot
 and passive network metadata with [harness.mjs](harness.mjs). Record expected action,

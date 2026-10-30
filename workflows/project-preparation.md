@@ -1,6 +1,8 @@
-# Named project and reference pack before scenes
+# Project preparation and reference pack
 
-Create a new, named Grok Imagine project for a new story. Verify its URL and
+Create the new, named Grok Imagine project at the point chosen in the project
+brief. When the user requests local images first, prepare them before creating
+and populating the live project. Verify its URL and
 sidebar identity. Fill its description/instructions with the locked script,
 creative aim, style, format, cast names, wardrobe, voices, set and camera rules.
 Add Character references by name with the actual inspected images. Add a Location
@@ -37,7 +39,8 @@ coverage, choose the needed front/three-quarter/profile/full-body subset; do not
 generate unused reference sheets. Label images as identity, set, first frame or
 last frame. A guide image does not replace either endpoint.
 
-Order clarified by Alex on 2026-10-07:
+Historical project-first order clarified on 2026-10-07; use it as the default
+unless the current project brief specifies another order:
 
 1. Establish story, named cast and the project details/reference masters first.
 2. Design the script's shot list and cut plan, including motivated wider views,
@@ -86,9 +89,10 @@ are not dependencies of this public release.
 
 Apply current UI evidence and the creator's instructions over historical skill defaults:
 1080p/2.39:1 framing, Speed/Quality, seven-reference limits and omni-reference
-are not unconditional promises. Verify availability live. This production uses
-16:9 without artificial letterboxing. Explicit first/last frames remain mandatory.
-Use the built-in image tool for the images as the creator's workflow requires.
+are not unconditional promises. Verify availability live. Take aspect, resolution,
+framing and image-generation/import workflow from the current project brief.
+Explicit first/last frames and actual-role checks remain mandatory for this
+frame-directed workflow.
 Inspect the entire movie and its sound, not only sampled frames. Main video quota
 and Agent extra-credit indicators are different observations; a failed main job
 does not prove the Agent path is blocked, or that it succeeds.

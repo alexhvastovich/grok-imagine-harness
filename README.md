@@ -7,6 +7,19 @@ Created by Alex for [AlexusaDays on YouTube](https://www.youtube.com/@alexusaday
 The harness grew out of real animation sessions: planning shots, keeping
 characters consistent, correcting takes, and assembling the resulting film.
 
+## Reusable workflow, project-specific choices
+
+Use the harness for any concept or project: concept -> brief/shot plan ->
+references/frames -> project packet and canvas -> configured per-shot motion ->
+edit/trim/stitch/sound -> review. [SKILL.md](SKILL.md) remains the main driver and
+keeps the six numbered stages; follow the user's chosen order over defaults.
+
+The brief determines scene/cast counts, art style, middle-frame need per shot,
+source durations, aspect/resolution, audio and delivery. Browser/runtime and
+available Grok settings require current capability checks. Historical examples
+are dated evidence, not project presets. Local assets do not establish that
+uploads, canvas organization or live composer configuration are complete.
+
 ## What it is
 
 The assistant plans and checks the images, continuity, prompts and edit; Grok
@@ -70,7 +83,8 @@ control your signed-in Grok tab. An ordinary text-only chat can help plan shots
 and prompts; it cannot operate your local browser or run these local files.
 Uploading this README alone does not install an integration.
 
-Start with a small production brief, for example:
+The following is an illustrative brief; replace its counts, format and audio
+choices with the current project requirements:
 
 > Read AGENTS.md and SKILL.md. Help me create a two-shot animation of an original
 > robot finding a flower, in 16:9, with sound effects and no dialogue or music.
@@ -82,7 +96,9 @@ Start with a small production brief, for example:
 
 ## How to use it
 
-1. **Plan:** lock the story, cast, visual style, set geography, audio intent and
+Default overview of the six stages; the project brief may specify another order.
+
+1. **Plan:** lock the story, any cast, visual style, set geography, audio intent and
    motivated shot coverage. Establish a named Grok project and references.
 2. **Prepare every shot:** create and inspect FIRST/LAST images and any needed
    INTERMEDIATE (middle) frame. Plan its action beat and timestamp, write motion
@@ -120,8 +136,10 @@ Review the resulting take for pauses, warping and unwanted slow motion.
 The observed attachment and timing steps are in
 [frame controls](workflows/frame-controls.md#prepare-a-shot) and
 [intermediate timestamps](workflows/frame-controls.md#set-an-actual-intermediate-timestamp).
-The generic page-object helpers and local readiness checks do not automatically
-attach or verify middle frames; use and inspect the documented live UI controls.
+The page-object helper can attach an optional middle image, and readiness checks
+validate declared planning data. These do not establish the actual checked role;
+use the [three-frame preflight](workflows/three-frame-preflight.md) and inspect
+the live controls before submission.
 
 ### Smooth transitions between clips
 
@@ -172,6 +190,18 @@ checks the declared whole-film preparation and local files; it cannot prove that
 an upload or visual review actually happened. `assemble` requires accepted
 clips, normalizes size/frame rate/audio, supplies silence for clips without
 audio, and makes straight joins. Existing movie files are never overwritten.
+
+### Current helper parameterization limits
+
+The workflow is project-driven; some existing helper routes remain narrower.
+`ImaginePage.preparePair` accepts duration, aspect and resolution overrides.
+The legacy `AgentPage.prepareInstruction` and `prepareFromProjectFiles` still
+hardcode 16:9, 720p and native audio, and the readiness helpers require a nonempty
+registered character list. Inspect these constraints before choosing a helper;
+do not invent a cast or change a project's format just to satisfy it. For other
+briefs, use a compatible verified UI route and record any unsupported capability.
+This documentation update does not generalize those code paths. Actual planned
+frame identities, roles, pin timing and settings still need live verification.
 
 ### Browser helpers and compatibility
 
