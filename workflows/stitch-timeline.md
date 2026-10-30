@@ -1,6 +1,6 @@
 # Native Stitch timeline: trims, fades and export
 
-Observed 2026-10-27 in the **Marine vs Space Marine - Ghost Strike** project.
+Observed 2026-10-27 in an action-scene test project.
 Use [editing grammar](editing-grammar.md) to choose the cut and this page for UI
 mechanics. Testing used two independent copies of existing raw shots; the
 original scene nodes and exported film were preserved.

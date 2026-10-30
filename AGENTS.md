@@ -35,7 +35,8 @@ The user owns story direction; the assistant owns visual direction, first/last i
 creation, visual continuity, shot acceptance and editing; Grok generates motion.
 For a continuous action: A -> B, B -> C. Inspect rendered endpoints before chaining.
 
-Production order (Alex, 2026-10-07): establish the new named project/details and
+Default production order (the user may choose another order): establish the
+new named project/details and
 named Character masters; design the shot list and angle/size coverage; generate
 and inspect ALL start/end image pairs for
 EVERY scene; write all motion/dialogue prompts from the locked script; complete

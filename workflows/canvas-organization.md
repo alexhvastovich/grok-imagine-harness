@@ -1,6 +1,6 @@
 # Keep the actual Grok canvas compact
 
-Alex requested this on 2026-10-07 after generated clips formed far-apart blocks.
+The user requested this on 2026-10-07 after generated clips formed far-apart blocks.
 Organize the live canvas, not just a local gallery or a written plan.
 
 Before motion, arrange the inspected pairs in numbered adjacent scene rows with
@@ -11,7 +11,7 @@ that scene's reserved video position; do not let automatic placement accumulate
 large gaps. Keep rejected/raw/duplicate nodes in a compact labelled source section
 next to or just below the main storyboard. Preserve source assets and IDs.
 
-For the Marine revision, Alex explicitly requested replacements stay in their
+For the Marine revision, the user explicitly requested replacements stay in their
 corresponding scene rows. Keep T01 and T02 adjacent in that same numbered row,
 with frame/take versions and current keeper status labelled. If replacement
 endpoints change, extend the row with another adjacent FIRST/LAST/TAKE triplet.
@@ -56,7 +56,7 @@ Verify actual position afterward. Low zoom renders unselected tiles without node
 DOM; select from a fresh screenshot, then identify its mounted DOM node and visible
 asset. Focus/keyboard movement can change the viewport; re-inspect before selecting
 the next tile. Do not describe a failed drag as successful or a planned layout as
-persistent. See ../ISSUES.md. Alex completed this production's layout manually;
+persistent. See ../ISSUES.md. The user completed this production's layout manually;
 preserve the user-organized board rather than applying the earlier Agent plan.
 
 Large keyboard moves can unmount a selected node when it leaves the viewport.

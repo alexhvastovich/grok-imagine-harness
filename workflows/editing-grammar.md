@@ -73,14 +73,14 @@ Put the final movie below the last row, label comparisons, preserve originals,
 and verify positions after reload. A table of registered IDs is not a finished
 canvas arrangement. Deliver the real movie file and keep the editable map.
 
-Marine R05 is an initial applied example, not a fully auditioned reference edit:
+A dated action edit is an initial applied example, not a fully auditioned reference edit:
 its local and native exports were decoded and reviewed frame by frame; listening
 and continuous normal-speed acceptance remained pending in that session.
 
 ## Verify scene meaning before applying transitions
 
 Reconcile the actual decoded shot content with the numbered plan before using a
-critic's labels or an Agent's cut table. In Marine R05 v3, the written review
+critic's labels or an Agent's cut table. In a dated action-edit revision, the written review
 called segment09 a Ghost ridge shot and segment12 a nuke, while the actual frames
 showed the rifle break and target-spotted courtyard. Fades were consequently
 placed inside continuous action. Correct totals and distinct neighboring pixels

@@ -1,6 +1,6 @@
 # Design film coverage before generating frames
 
-Alex requested varied cinematic coverage on 2026-10-07. Break the script into
+The user requested varied cinematic coverage on 2026-10-07. Break the script into
 dramatic beats, then design shots; one script paragraph is not necessarily one
 shot. Add useful angles and shot sizes before the all-images-first gate, not as
 random extra footage after generation. Preserve the locked dialogue and story.
@@ -53,7 +53,7 @@ set -> shot list/coverage and cut plan -> ALL first/end images and visual checks
 -> ALL motion/dialogue prompts -> complete project packet and compact canvas ->
 generate one shot at a time -> inspect actual endpoints -> edit and review.
 
-The existing five-shot review cut is preserved. Alex completed the final edit;
+The existing five-shot review cut is preserved. The user completed the final edit;
 this expanded coverage requirement applies to the next production or an explicitly
 requested revision, not an unsolicited regeneration of that finished edit.
 

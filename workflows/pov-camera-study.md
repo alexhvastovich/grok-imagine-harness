@@ -1,6 +1,6 @@
 # POV camera study for fictional action
 
-Requested by Alex on 2026-10-27 to improve the Marine fight's angles and grounding.
+Requested by the user on 2026-10-27 to improve the Marine fight's angles and grounding.
 Use this for a requested first-person/helmet-camera treatment, alongside the
 [film action recipes](action-sequences.md). It is camera and production design,
 not combat training or an analysis of battlefield effectiveness.

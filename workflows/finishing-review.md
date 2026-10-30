@@ -2,7 +2,7 @@
 
 Use after the picture joins work. These checks supplement continuity and sound
 review; they do not justify automatic overlays, grain, sharpening or regeneration.
-Alex supplied the [Tetsuo editing post](https://x.com/tetsuoai/status/2115277212824019367)
+The user supplied the [Tetsuo editing post](https://x.com/tetsuoai/status/2115277212824019367)
 on2026-10-27. Its four suggestions are useful with the following limits.
 
 ## Track graphics according to what they mean

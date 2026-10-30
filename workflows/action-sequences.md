@@ -1,8 +1,9 @@
 # Film-informed action sequences
 
 Use for action filmmaking and storyboards: gunfights, cover, chases, close combat,
-grenade interruptions and powered movement. Requested by Alex on 2026-10-27 after
-a Marine fight draft became two stationary figures exchanging fire.
+grenade interruptions and powered movement. A dated action-scene test exposed
+two stationary figures exchanging fire
+instead of progressing choreography.
 
 These are adaptable filmmaking patterns, not exact reconstructions of the films.
 Sources are cinematographer/director/stunt-team interviews read on 2026-10-27;
@@ -174,7 +175,7 @@ appearing from nowhere, reset damage, or identical static poses across the fight
 
 ## Action rhythm and source duration
 
-The Marine first pass used six-second source takes. Alex subsequently allowed
+The Marine first pass used six-second source takes. The user subsequently allowed
 shorter takes, or longer sources trimmed to the action. Choose a supported source
 duration for the beat and inspect the actual motion; six seconds is not a standing
 requirement. The final runtime remains open, with no preset sixty-second slot.

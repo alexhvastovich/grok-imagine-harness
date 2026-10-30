@@ -76,7 +76,7 @@ over unnecessary upload prompts.
 
 Follow [canvas-organization.md](canvas-organization.md) for compact row placement,
 live overview/readable-row checks and persistence after reload. Do not disturb
-a layout the user has finished. In the example production Alex completed the
+a layout the user has finished. In the example production the user completed the
 arrangement manually; the final capture does not verify automated full-board layout.
 
 ## Observe, then record
@@ -112,7 +112,7 @@ as a named Files entry, and replacing a Character guide does not revise existing
 endpoint images. Verify the intended namespace instead of repeatedly re-uploading.
 
 For native downloads, inspect a pending Save As dialog before sending keys. If
-the user changes the window or the tool reports user input, refresh that dialog
+The user changes the window or the tool reports user input, refresh that dialog
 state first. Do not type into a vanished dialog or emit unrelated desktop data.
 If the dialog has already closed, inspect the actual new file: verify its stream
 metadata, decoded image identity and hash before copying it into the project.
