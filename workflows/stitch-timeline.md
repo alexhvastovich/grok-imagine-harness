@@ -14,6 +14,8 @@ original scene nodes and exported film were preserved.
    selected clip's icon button with `aria-label="Stitch"`.
 3. Click the final Stitch button. This creates an editable `assetGroup` timeline;
    it is not an exported movie. Selected nodes become children of that group.
+   Inspect the actual preview strips in sequence: selection badges do not
+   guarantee timeline order.
    Use independent comparison copies when preserving their original row placement
    matters. **Stitch settings > Unstitch** is exposed; restoration was not tested
    in this comparison.
@@ -81,3 +83,20 @@ was a native transition control.
 For most moving firefight coverage, first test a hard cut on movement or impact.
 Replaying the same duck/landing on both sides of a cut is a timing problem;
 adding a dissolve does not correct the repeated action.
+
+## Native runtime follow-up - 2026-10-30
+
+An eight-source sequence produced a different actual strip order from its
+selection badges. Inspect each strip preview/source before export. Dragging the
+misplaced strip to its intended position corrected the observed order; verify
+the new sequence after the drag. In this native runtime, Hand Tool did not
+prevent clip-strip drag-and-drop. This does not establish behavior for all
+canvas nodes or future UI versions.
+
+Native accessibility setValue did not change the tested trim slider. Clicking
+the actual thumb and using bounded arrow input worked in 0.1-second steps, with
+separate settled-value checks. Keep native key batches at 50 events or fewer
+and re-read the resulting value; do not infer success from issued input. The
+submitted Export instruction exposed the actual per-clip recipe, and the
+Exporting button was disabled while the job ran. Submission is not a completed
+combined movie: verify the new playable result, download identity and media.
