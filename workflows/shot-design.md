@@ -56,3 +56,48 @@ generate one shot at a time -> inspect actual endpoints -> edit and review.
 The existing five-shot review cut is preserved. Alex completed the final edit;
 this expanded coverage requirement applies to the next production or an explicitly
 requested revision, not an unsolicited regeneration of that finished edit.
+
+
+## Track every subject that is meant to move
+
+FIRST / MIDDLE / LAST must show coherent progress for every intended moving
+subject or object, including supporting characters. Do not advance only the
+foreground action while everyone else remains an identical frozen pose. Keep
+one readable main beat; supporting gestures should belong to that same moment.
+
+Add a small motion-track table to the shot plan before creating its three images:
+
+| Subject/object | FIRST | MIDDLE | LAST | Preserve |
+| --- | --- | --- | --- | --- |
+| Main worker | Begins the task | Makes contact | Completes the task | Identity, hands, tool and contact point |
+| Colleague | Holds tablet low, looks toward work | Raises tablet, glances at its screen | Lowers tablet, looks back | Same tablet, grip and physical position |
+| Seated visitor | Cup rests in hand | Raises the same cup | Sips, with cup at lips | Single cup, supporting hand and seated scale |
+| Supporting robot | Upright beside its task | Bends to inspect | Straightens after inspection | Same location, limb lengths and equipment |
+| Fixed set/parked vehicle | Stationary | Stationary | Stationary | World geometry; only coherent camera parallax |
+
+Record each actor's action phase, pose, gaze/eyeline, prop ownership and hand
+contact at all three states. Record travel direction and progress for moving
+vehicles, lights or machinery too. Do not create a second cup, teleport a tablet,
+restart a completed gesture or move an object intended to stay parked. Evaluate
+the whole triple, not three individually attractive pictures. Revise affected
+frames together when a supporting action or identity changes.
+
+Ambient cues must fit the environment. An atmosphere-free exterior, such as the
+Moon, has no wind-driven hair, fabric or foliage; distinguish it from an interior
+with ventilation. Preserve deliberate stillness and fixed architecture while
+allowing only the planned living or mechanical motion.
+
+## Distinguish the cast and verify the canvas
+
+Different hair colors do not establish different characters. Compare faces,
+facial proportions, body silhouette, hairstyle shape, wardrobe silhouette, pose
+and habitual expression against distinct masters. Reject near-duplicate faces.
+Carry an accepted identity correction through every affected frame in the triple
+and all dependent shots, not just the first image.
+
+Check exact pixel width and height of every FIRST / MIDDLE / LAST file before
+accepting the storyboard. Image generation can return a one-pixel canvas
+difference despite matching requested dimensions. Repair the affected image
+through the active image-generation workflow, then recheck dimensions, identity,
+framing and action state. A dimension check is a check, not a new normalization
+pipeline or proof of motion quality.

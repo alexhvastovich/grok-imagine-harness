@@ -50,3 +50,19 @@ screenshots; DOM/network were unavailable. Stop was requested, but the following
 AX capture still reported Thinking and Stop while its screenshot showed the
 send-arrow control. Terminal cancellation and completed assets therefore remain
 unconfirmed by these mismatched observations. See [browser actions](workflows/browser-actions.md#short-film-starter-submits-immediately).
+
+
+### 2026-10-29: complete motion tracks and distinct supporting cast
+
+The user required coherent start/middle/end progression for every subject or
+object intended to move, not only the main actor. Added per-subject action,
+prop/contact and gaze tracks, explicit stationary-world constraints, and
+environment-appropriate ambient motion to shot planning and prompting. Cast
+differentiation must include facial proportions, silhouette and pose, rather
+than hair color alone; an identity repair propagates through the full triple.
+
+Local image preparation also exposed a one-pixel canvas mismatch. Exact
+dimension validation caught it and the affected image was repaired through
+image generation. This is not a new normalization tool. The new guidance was
+applied during still-image preparation; no corresponding Grok motion result
+had been generated or verified at this checkpoint.

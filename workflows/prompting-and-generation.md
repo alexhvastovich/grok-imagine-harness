@@ -97,3 +97,25 @@ Actual frame attachments/roles still require the UI checks above.
 The team reports about18hours for editing, sound and color. This is one production's
 account, not a runtime estimate or a native Stitch tutorial. Keep generation,
 editorial finishing and audiovisual review as distinct work to complete.
+
+
+## Animate the complete planned moment
+
+Carry the shot plan's per-subject FIRST / MIDDLE / LAST motion tracks into the
+one scene prompt. State the foreground action and the supporting gestures,
+gaze changes, prop movement and compatible ambient cues. Keep their causal order
+and physical contact readable. Explicitly name fixed architecture and parked
+objects that must remain stationary in world space; camera movement may create
+coherent parallax, not set rearrangement. Do not rely on a generic request to
+make the background alive when its three images contain no corresponding progress.
+
+For example: while the worker completes the main task, a colleague raises then
+lowers the same tablet and shifts gaze, a seated visitor raises one cup to sip,
+and a supporting robot bends then straightens. Preserve each identity, prop
+owner, grip and location. The prompt must agree with the actual three images;
+if a required gesture is absent or contradictory, repair the frames first.
+Do not request exterior wind-driven movement in an atmosphere-free setting.
+
+These are planning and still-image review rules. A prepared triple does not
+establish that Grok rendered every motion, maintained the cast, or produced a
+smooth join. Review the actual takes and edit boundaries separately.
