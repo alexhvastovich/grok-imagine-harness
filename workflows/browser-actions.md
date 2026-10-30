@@ -167,3 +167,27 @@ Preserve that limit rather than labeling a partial run a completed audiovisual p
 
 
 For multifile uploads, verify every expected filename in Files after the upload notification clears. A progress counter reaching its last item can still leave that item absent. R08v3 notes and movie arrived but the ending keeper did not; registration correctly reported it missing. Retry only the missing file after checking current verification state; do not count attempted selection as an upload or fabricate a registered asset ID.
+
+
+## Before/action/after evidence for each new operation
+
+Before clicking, inspect the current DOM, confirm the exact target identity,
+button surface and function, and take a screenshot showing its context. Do not
+click a control merely to discover whether it submits: canvas Make Video and
+detail Make Video have different behavior. Record the expected effect first.
+
+After the bounded action, inspect fresh DOM and take a screenshot of the actual
+result before choosing the next step. Store captures with the operation, source
+asset/node identity, expected versus actual result and honest verification level.
+Include passive network metadata when available; otherwise record why unavailable.
+If an initial step has only tool DOM snapshots, label that evidence partial. A
+later screenshot documents its own state, not the missing earlier state.
+
+Treat browser-runtime failures separately from product results. A closed tab or
+an unsupported module import does not prove a Grok feature failed. Refresh tab
+inventory after closure, preserve the production checkpoint, and apply the current
+browser recovery policy. An automation error saying a target is closed does not
+prove the actual user tab closed: inspect fresh inventory and an allowed native
+screenshot/AX view before choosing recovery. If DOM access is unavailable, record
+that limitation and the actual screenshot/AX evidence; do not call it DOM proof.
+Do not replay an uncertain submit or keep clicking through a detached handle.

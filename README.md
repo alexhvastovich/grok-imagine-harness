@@ -238,3 +238,9 @@ If this helps your production, a link to the channel and this repository is
 appreciated. Original code and documentation are available under the
 [MIT License](LICENSE). Linked third-party materials and product names retain
 their respective rights.
+
+
+For optional or required middle images, use the [three-frame preflight](workflows/three-frame-preflight.md).
+It distinguishes whole-film planning checks from the current shot?s observed
+composer roles, pin and duration. Local guard tests are separate from live motion
+and editorial acceptance.

@@ -73,7 +73,9 @@ its intended beat/time and verify the actual attachment role and Keyframe time
 in the live UI. Read [frame controls](workflows/frame-controls.md). Set duration
 first and recheck the pin after changes; prompt text alone does not configure it.
 Include planned middle frames in storyboard review and adjacent canvas rows.
-Local readiness helpers do not automatically attach or validate middle frames.
+Readiness helpers validate declared middle files/review/timing, but do not
+attach them or establish live roles. Use the [three-frame preflight](workflows/three-frame-preflight.md)
+for the separate current-shot composer evidence gate.
 
 Every shot needs both real files, even when it ends in a deliberate cut. Write ALL
 motion/dialogue prompts only after the image plan is inspected; follow

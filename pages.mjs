@@ -1,9 +1,39 @@
 // Page objects for the documented browser-client Playwright subset.
 // Pass an existing, freshly grounded tab. This module does not launch a browser.
+export function assertIntermediatePlan(shot) {
+  if(shot.intermediate_required && !shot.intermediate_frame) throw new Error(`${shot.id}: required intermediate_frame is missing`);
+  if(!shot.intermediate_frame) return false;
+  if(shot.intermediate_review!=='accepted') throw new Error(`${shot.id}: inspect the intermediate image before any video`);
+  const time=shot.intermediate_time_seconds, duration=shot.duration_target;
+  if(!Number.isFinite(duration) || duration<=0 || !Number.isFinite(time) || time<=0 || time>=duration) throw new Error(`${shot.id}: intermediate_time_seconds must be inside duration_target`);
+  return true;
+}
+
+// Validates a caller's separately recorded UI observations, not prompt text.
+// Role/identity review is still manual; source/duration drift is checked live below.
+export function assertFrameConfiguration(shot,configuration) {
+  const middle=assertIntermediatePlan(shot);
+  if(!configuration || configuration.verified!==true) throw new Error('Verify current composer frame identities, roles and duration before submission');
+  if(!Number.isFinite(configuration.duration_seconds) || configuration.duration_seconds!==shot.duration_target) throw new Error('Observed composer duration differs from duration_target');
+  const expected=[['first',shot.first_frame],...(middle?[['intermediate',shot.intermediate_frame]]:[]),['last',shot.planned_last_frame]];
+  if(!Array.isArray(configuration.frames) || configuration.frames.length!==expected.length) throw new Error('Observed composer frame count differs from planned roles');
+  for(const [role,file] of expected) {
+    const matches=configuration.frames.filter(f=>f.role===role);
+    if(matches.length!==1 || matches[0].file!==file || matches[0].verified!==true || !matches[0].src) throw new Error(`Verify the actual ${role} attachment identity and checked role`);
+    if(role==='intermediate' && (!Number.isFinite(matches[0].time_seconds) || Math.abs(matches[0].time_seconds-shot.intermediate_time_seconds)>1e-6)) throw new Error('Observed intermediate pin differs from intermediate_time_seconds');
+  }
+  return true;
+}
+
+function sourcePath(src) {
+  try {const u=new URL(src);return u.origin+u.pathname;} catch {return src;}
+}
+
 export function assertProductionReady(manifest) {
   if(!manifest?.project_name || !manifest.project_details_verified || !manifest.project_packet_uploaded) throw new Error('Create and fully populate the named project before video generation');
   if(!manifest.characters?.length || manifest.characters.some(c=>!c.registered || !c.master)) throw new Error('Register all named Character masters before scenes');
   if(!manifest.shots?.length || manifest.shots.some(s=>!s.first_frame || !s.planned_last_frame || s.image_review!=='accepted' || !s.motion_prompt?.trim())) throw new Error('Complete and inspect ALL scenes first/last images and write ALL prompts before any video');
+  for(const shot of manifest.shots) assertIntermediatePlan(shot);
   return true;
 }
 export function classifyGeneration(snapshot, media=[]) {
@@ -26,7 +56,7 @@ export class ImaginePage {
     const [chooser]=await Promise.all([this.pw.waitForEvent('filechooser',{timeoutMs:10000}),button.click()]);
     await chooser.setFiles([filename]);
   }
-  async preparePair({firstFrame,lastFrame,prompt,resolution='720p',duration='10s',aspect='16:9 Widescreen'}) {
+  async preparePair({firstFrame,intermediateFrame,lastFrame,prompt,resolution='720p',duration='10s',aspect='16:9 Widescreen'}) {
     if ((await this.tab.url()) !== 'https://grok.com/imagine') throw new Error('Open a clean /imagine draft first');
     if (await this.button('Remove image').count()) throw new Error('Existing attachments: inspect and clear the draft explicitly');
     await this.pw.getByRole('radio',{name:'Video',exact:true}).check();
@@ -39,10 +69,13 @@ export class ImaginePage {
       await this.button(label).click();
       await this.pw.getByRole('menuitemradio',{name:value,exact:true}).click();
     }
+    // Set duration first: changing it can retain an old intermediate pin time.
+    if(intermediateFrame) await this.uploadVia(this.button('Add intermediate frame'),intermediateFrame);
     // Wait for menus/animations to settle; the immediate snapshot after a menu
     // selection can still expose only unnamed background controls.
     await this.button('Submit').waitFor({state:'visible'});
-    if(await this.button('Remove image').count()!==2) throw new Error('Expected exactly first and last frame attachments; inspect draft');
+    const expected=intermediateFrame?3:2;
+    if(await this.button('Remove image').count()!==expected) throw new Error(`Expected ${expected} first/intermediate/last attachments; inspect draft`);
     // Returns evidence for visual verification. Deliberately does not submit.
     return this.snapshot();
   }
@@ -54,11 +87,30 @@ export class ImaginePage {
     await this.button('Add last frame').waitFor({state:'visible'});
     return this.snapshot();
   }
-  async submitPrepared({manifest}={}) {
+  async submitPrepared({manifest,shotId,frameConfiguration}={}) {
     if(await this.button('Stop').count()) throw new Error('A job is already running');
     const submit=this.button('Submit');
-    if(await this.button('Remove image').count()!==2) throw new Error('Both first and last frames are required for this production harness');
+    const shot=manifest?.shots?.find(s=>s.id===shotId);
+    if(shotId && !shot) throw new Error('Shot is absent from the complete manifest');
+    if(!shot && manifest?.shots?.some(s=>s.intermediate_frame || s.intermediate_required)) throw new Error('Specify shotId for a production with intermediate frames');
+    const expected=shot?.intermediate_frame?3:2;
+    if(await this.button('Remove image').count()!==expected) throw new Error(`Both first and last frames${expected===3?' plus the intermediate frame':''} are required for this production harness`);
     assertProductionReady(manifest);
+    if(shot?.intermediate_frame || frameConfiguration) {
+      if(!shot) throw new Error('Specify shotId when supplying frameConfiguration');
+      assertFrameConfiguration(shot,frameConfiguration);
+      const live=await this.pw.evaluate(()=>{
+        const images=[...document.querySelectorAll('[data-testid="frame-group-pill"] img,[data-testid="frame-pin-mid-zone"] img')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0;});
+        const duration=document.querySelector('button[aria-label="Video duration"]')?.innerText||'';
+        const pin=document.querySelector('[data-testid="frame-pin-mid-zone"]')?.innerText||'';
+        return {sources:images.map(e=>e.getAttribute('src')),durationSeconds:Number(duration.match(/([\d.]+)\s*s/)?.[1]),intermediateTimeSeconds:Number(pin.match(/([\d.]+)\s*s\b/)?.[1])};
+      });
+      const observed=frameConfiguration.frames.map(f=>sourcePath(f.src)).sort();
+      if(live.durationSeconds!==frameConfiguration.duration_seconds || JSON.stringify(live.sources.map(sourcePath).sort())!==JSON.stringify(observed)) throw new Error('Composer attachments or duration changed; inspect and record fresh frameConfiguration');
+      // The strip badge rounds to a tenth; the exact slider value belongs in
+      // frameConfiguration. A missing/unreadable badge fails closed.
+      if(shot.intermediate_frame && (!Number.isFinite(live.intermediateTimeSeconds) || Math.abs(live.intermediateTimeSeconds-shot.intermediate_time_seconds)>0.051)) throw new Error('Composer intermediate pin changed or is unreadable; recheck Keyframe time');
+    }
     if(await submit.count()!==1 || !await submit.isEnabled()) throw new Error('Submit unavailable; inspect current draft and quota');
     await submit.click(); // One submission only. Never automatically retry.
     return this.snapshot();
@@ -118,6 +170,7 @@ export class AgentPage extends ImaginePage {
     assertProductionReady(manifest);
     const shot=manifest.shots.find(s=>s.id===shotId);
     if(!shot) throw new Error('Shot is absent from the complete manifest');
+    if(shot.intermediate_frame) throw new Error('Use the explicit frame composer for intermediate frames; Agent middle-role configuration is unverified');
     for(const id of [firstAssetId,lastAssetId]) if(!/^[a-f0-9-]{36}$/i.test(id||'')) throw new Error('Use visually verified live endpoint asset IDs');
     if(await this.button('Stop').count()) throw new Error('A job is already running');
     const instruction=`Generate ONLY ${shot.id}, one ${shot.duration_target}-second 16:9 720p video with native audio. The named project, Character masters, every scene endpoint pair and all prompts are prepared. Use imagine_reference_to_video with literal first_frame_asset_id=${firstAssetId} and last_frame_asset_id=${lastAssetId}, not generic guide references. Exact motion prompt:\n\n${shot.motion_prompt}\n\nReturn a real playable asset ID and endpoint assignments. Do not generate other scenes or stills, or automatically retry.`;
@@ -126,6 +179,7 @@ export class AgentPage extends ImaginePage {
   }
   async submitInstruction({manifest}) {
     assertProductionReady(manifest);
+    if(manifest.shots.some(s=>s.intermediate_frame)) throw new Error('Use the explicit frame composer for intermediate frames; Agent middle-role configuration is unverified');
     if(await this.button('Stop').count()) throw new Error('A job is already running');
     const send=this.button('Send');
     if(await send.count()!==1 || !await send.isEnabled()) throw new Error('Inspect the prepared Agent instruction');
@@ -136,6 +190,7 @@ export class AgentPage extends ImaginePage {
     assertProductionReady(manifest);
     const shot=manifest.shots.find(s=>s.id===shotId);
     if(!shot) throw new Error('Shot is absent from the complete manifest');
+    if(shot.intermediate_frame) throw new Error('Use the explicit frame composer for intermediate frames; Agent middle-role configuration is unverified');
     const first=String(shot.first_frame).split(/[\\/]/).pop();
     const last=String(shot.planned_last_frame).split(/[\\/]/).pop();
     if(![first,last].every(name=>manifest.project_files_verified?.includes(name))) throw new Error('Verify both current endpoint filenames in project Files first');

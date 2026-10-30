@@ -30,3 +30,19 @@ production media and captures are intentionally omitted, so historical UI result
 are summaries, not independently reproducible evidence bundled with this repo.
 No current end-to-end generation, normal-speed listening or creative film
 acceptance is claimed by these local checks.
+
+
+## 2026-10-29: optional middle-frame guard tests
+
+Twelve Node tests and three Python tests pass after adding planned middle-frame
+checks and current-shot composer evidence validation. Cases cover a missing later
+middle, pending review, nonnumeric/out-of-range pin, mismatched dimensions, wrong
+role/file, changed attachment, changed duration and stale/unreadable pin. A
+synthetic valid triple submits exactly once; an unverified Agent middle route
+submits zero times. Existing two-frame preflight and real FFmpeg decode/assembly
+tests remain passing.
+
+These tests use local media and synthetic browser adapters. No new live
+three-frame generation, 15-second output, native trim/stitch result, normal-speed
+motion acceptance or listening verdict follows from them. The separate 15s menu
+selection has partial tool-DOM evidence and no retained initial screenshot.

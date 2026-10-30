@@ -56,7 +56,7 @@ def validate(manifest, require_clips=False):
         if boundary not in ('continuous', 'cut'):
             raise ValueError(f'{sid}: invalid boundary')
         files = {}
-        for key in ('first_frame', 'planned_last_frame', 'actual_last_frame', 'clip'):
+        for key in ('first_frame', 'intermediate_frame', 'planned_last_frame', 'actual_last_frame', 'clip'):
             if shot.get(key):
                 file = (manifest.parent / shot[key]).resolve()
                 if not file.is_file():
@@ -64,11 +64,17 @@ def validate(manifest, require_clips=False):
                 files[key] = file
         if 'first_frame' not in files or 'planned_last_frame' not in files:
             raise ValueError(f'{sid}: first_frame and planned_last_frame are required')
-        for key in ('first_frame','planned_last_frame'):
+        if shot.get('intermediate_required') and 'intermediate_frame' not in files:
+            raise ValueError(f'{sid}: required intermediate_frame is missing')
+        for key in ('first_frame','planned_last_frame','intermediate_frame'):
+            if key not in files:
+                continue
             meta=probe(files[key])['streams'][0]
             files[key+'_dimensions']=(meta['width'],meta['height'])
         if files['first_frame_dimensions'] != files['planned_last_frame_dimensions']:
             raise ValueError(f'{sid}: first and last frame dimensions differ')
+        if 'intermediate_frame' in files and files['intermediate_frame_dimensions'] != files['first_frame_dimensions']:
+            raise ValueError(f'{sid}: intermediate frame dimensions differ from endpoints')
         if boundary == 'continuous':
             if previous is None:
                 raise ValueError(f'{sid}: first shot cannot continue a missing shot')
@@ -101,8 +107,14 @@ def ready(manifest):
     for shot,files in shots:
         if shot.get('image_review')!='accepted' or not str(shot.get('motion_prompt') or '').strip():
             raise ValueError(f"{shot['id']}: inspect both images and write prompt before ANY video")
+        if shot.get('intermediate_frame'):
+            if shot.get('intermediate_review') != 'accepted':
+                raise ValueError(f"{shot['id']}: inspect the intermediate image before ANY video")
+            time, duration = shot.get('intermediate_time_seconds'), shot.get('duration_target')
+            if any(isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) for v in (time,duration)) or not 0 < time < duration:
+                raise ValueError(f"{shot['id']}: intermediate_time_seconds must be inside duration_target")
     return {'ready':True,'shots':len(shots),'characters':len(cast),
-            'note':'Local files and declared UI preparation verified; this does not prove quota availability or successful motion.'}
+            'note':'Local files and declared planning/review fields checked. Live attachment roles, pin and duration require separate composer verification; quota and successful motion are not proved.'}
 
 
 def assemble(manifest, output, width=1920, height=1080, fps=24):

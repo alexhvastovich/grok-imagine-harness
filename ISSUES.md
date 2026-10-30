@@ -23,3 +23,19 @@ IDs, account links and private evidence are not part of this release.
 The public release also fixes a recorder issue where capture-index URLs were
 previously saved without stripping query strings. Captures remain private;
 this fix is not a guarantee of complete anonymization.
+
+
+## 2026-10-29: middle-frame guard gap
+
+Code inspection found that the two-frame page helper rejected a legitimate third
+attachment, while whole-film readiness omitted the middle image. Added optional
+middle-file/review/time checks and a separate current-shot composer evidence gate.
+The browser helper now accepts the planned triple, compares fresh visible source,
+duration and pin readouts with recorded review, and refuses an unverified Agent
+middle-role route. Existing two-frame manifests remain supported.
+
+Local automated tests cover missing, unreviewed, mistimed, wrong-sized and stale
+middle inputs plus a synthetic successful submission. These are code checks, not
+new Grok generation evidence. The main composer?s 15s option was selected during
+preparation; the initial record has tool DOM snapshots only, so screenshot and
+end-to-end three-frame result verification are not implied.

@@ -169,3 +169,11 @@ pin and a configured timestamp before one authorized submission. These are
 historical UI observations, not automated end-to-end certification. Reinspect
 current controls and inspect the actual output before accepting a keeper.
 Intermediate count limits and arbitrary role reassignment remain unverified.
+
+
+## Local planning and submission guards
+
+See [three-frame preflight](three-frame-preflight.md) for optional middle fields,
+whole-film file/review checks and the separate current-shot composer evidence
+gate. These guards are locally tested; they do not establish a new live generation
+result or replace image/role review.

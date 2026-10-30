@@ -2,10 +2,55 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from continuity import extract, validate, assemble, run, probe
+from unittest.mock import patch
+from continuity import extract, validate, assemble, run, probe, ready
 
 
 class ContinuityTests(unittest.TestCase):
+    def test_three_frame_preflight_rejects_missing_unreviewed_and_out_of_range_middle(self):
+        # Local planning validation only: actual media decoding is exercised by
+        # the separate integration test, not claimed by this metadata fixture.
+        with tempfile.TemporaryDirectory() as td, patch('continuity.probe',return_value={'streams':[{'width':160,'height':90}]}):
+            p=Path(td)
+            for name in ('first.png','middle.png','last.png','master.png'):
+                (p/name).write_bytes(b'unit metadata fixture')
+            shot={'id':'s01','first_frame':'first.png','planned_last_frame':'last.png','image_review':'accepted','motion_prompt':'One action','duration_target':15,
+                  'intermediate_required':True,'intermediate_frame':'middle.png','intermediate_review':'accepted','intermediate_time_seconds':22/3}
+            plan={'project_name':'Film','project_details_verified':True,'project_packet_uploaded':True,
+                  'characters':[{'name':'Actor','registered':True,'master':'master.png'}],'shots':[shot]}
+            file=p/'plan.json'
+            def check():
+                file.write_text(json.dumps(plan),encoding='utf-8')
+                return ready(file)
+            self.assertTrue(check()['ready'])
+            shot['intermediate_frame']='absent.png'
+            with self.assertRaisesRegex(ValueError,'missing intermediate_frame'): check()
+            shot['intermediate_frame']=None
+            with self.assertRaisesRegex(ValueError,'required intermediate_frame'): check()
+            shot['intermediate_frame']='middle.png'
+            shot['intermediate_review']='pending'
+            with self.assertRaisesRegex(ValueError,'inspect the intermediate'): check()
+            shot['intermediate_review']='accepted'
+            for time in (0,15,-1,'7.5',True,float('inf'),float('nan')):
+                with self.subTest(time=time):
+                    shot['intermediate_time_seconds']=time
+                    with self.assertRaisesRegex(ValueError,'inside duration_target'): check()
+            shot['intermediate_time_seconds']=22/3
+            (p/'middle.png').unlink()
+            with self.assertRaisesRegex(ValueError,'missing intermediate_frame'): check()
+
+    def test_middle_dimensions_must_match_both_endpoints(self):
+        with tempfile.TemporaryDirectory() as td:
+            p=Path(td)
+            for name in ('first.png','middle.png','last.png'):
+                (p/name).write_bytes(b'unit metadata fixture')
+            plan={'shots':[{'id':'s01','first_frame':'first.png','intermediate_frame':'middle.png','planned_last_frame':'last.png'}]}
+            file=p/'plan.json';file.write_text(json.dumps(plan),encoding='utf-8')
+            def metadata(file):
+                return {'streams':[{'width':80 if Path(file).name=='middle.png' else 160,'height':90}]}
+            with patch('continuity.probe',side_effect=metadata):
+                with self.assertRaisesRegex(ValueError,'intermediate frame dimensions differ'): validate(file)
+
     def test_real_decode_chain_and_mixed_audio_assembly(self):
         with tempfile.TemporaryDirectory() as td:
             p=Path(td)
