@@ -10,6 +10,26 @@ the relevant modules below, then follow their click paths in the current live UI
 The assistant directs images, composition, continuity and editing; Grok generates
 motion. User corrections override historical examples and defaults.
 
+## Active objective and continuation
+
+Keep the requested production objective active until its deliverable is finished.
+Questions, status requests, harness improvements and corrections steer that work;
+they do not cancel it. Answer briefly, then resume the next authorized production
+step in the same run. Delegated findings support delivery and do not replace it.
+Subagents must flag an avoidable production stop, the unfinished deliverable and
+the next action when they detect one.
+
+Stop when the user explicitly stops/cancels, or pause an affected action for a
+genuine safety, tool, authentication, credit or required-input blocker. Obey
+physical tool stops; never bypass them. Persist the exact verified state and
+next action, keep independent authorized work moving, and do not invent new
+permission or retry gates.
+
+Before ending, audit the active objective, actual deliverable and next action.
+Distinguish completed delivery, a partial deliverable and a genuine block. If the
+next step is already authorized and unblocked, execute it instead of offering to
+continue.
+
 ## Scope and project inputs
 
 Use this harness for any idea or project. Shared guidance covers the order of

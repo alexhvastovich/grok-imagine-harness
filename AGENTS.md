@@ -1,5 +1,25 @@
 # Grok Imagine operating harness
 
+## Active objective and continuation
+
+Keep the requested production objective active until its deliverable is finished.
+Questions, status requests, harness improvements and corrections steer that work;
+they do not cancel it. Answer briefly, then resume the next authorized production
+step in the same run. Delegated findings support delivery and do not replace it.
+Subagents must flag an avoidable production stop, the unfinished deliverable and
+the next action when they detect one.
+
+Stop when the user explicitly stops/cancels, or pause an affected action for a
+genuine safety, tool, authentication, credit or required-input blocker. Obey
+physical tool stops; never bypass them. Persist the exact verified state and
+next action, keep independent authorized work moving, and do not invent new
+permission or retry gates.
+
+Before ending, audit the active objective, actual deliverable and next action.
+Distinguish completed delivery, a partial deliverable and a genuine block. If the
+next step is already authorized and unblocked, execute it instead of offering to
+continue.
+
 Start with SKILL.md, the canonical driver, and read only the modules its task
 router selects. README.md covers setup; UI-GUIDE.md contains dated UI evidence.
 Do not bypass the six production stages for a new film, or rerun unaffected stages
