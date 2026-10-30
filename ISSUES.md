@@ -36,6 +36,17 @@ middle-role route. Existing two-frame manifests remain supported.
 
 Local automated tests cover missing, unreviewed, mistimed, wrong-sized and stale
 middle inputs plus a synthetic successful submission. These are code checks, not
-new Grok generation evidence. The main composer?s 15s option was selected during
+new Grok generation evidence. The main composer's 15s option was selected during
 preparation; the initial record has tool DOM snapshots only, so screenshot and
 end-to-end three-frame result verification are not implied.
+
+
+### 2026-10-29: Short Film is an immediate-submit starter
+
+Clicking **Short Film** on an empty Agent canvas immediately submitted a canned
+three-idea, character-image and poster request. Do not use it as passive project
+initialization. Submission was verified with native accessibility text and
+screenshots; DOM/network were unavailable. Stop was requested, but the following
+AX capture still reported Thinking and Stop while its screenshot showed the
+send-arrow control. Terminal cancellation and completed assets therefore remain
+unconfirmed by these mismatched observations. See [browser actions](workflows/browser-actions.md#short-film-starter-submits-immediately).

@@ -8,6 +8,7 @@ DOM, screenshot and selected asset before acting; labels and routes can change.
 | --- | --- |
 | Project / Files | Named production packet, script, references and endpoint files; verify the current project and every uploaded filename |
 | References | Named Character, Location and Prop masters; inspect the actual attached image and save outcome |
+| Short Film starter | Immediately submits a canned request for three film ideas, character images and posters; not passive canvas initialization |
 | Canvas | Select and organize existing nodes; keep adjacent FIRST, LAST and VIDEO rows; verify after reload |
 | Image detail / Make Video / Add Prompt | Prepare frame-controlled drafts; inspect populated FIRST/LAST and optional middle images before submission |
 | Main Imagine composer | Verify available aspect, duration and resolution; prompt text alone does not configure settings |
@@ -28,3 +29,9 @@ and [canvas organization](workflows/canvas-organization.md).
 To build your own searchable evidence browser, capture into ignored `evidence/`
 and run `python build_map.py`. All generated maps and screenshots are private
 local artifacts. They are not bundled evidence for this public guide.
+
+
+The Short Film immediate-submit behavior was observed on October 29 using native
+accessibility text and screenshots, with DOM/network unavailable. Stop was
+requested; terminal cancellation and completed assets were not confirmed. See
+[the starter warning](workflows/browser-actions.md#short-film-starter-submits-immediately).

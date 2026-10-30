@@ -191,3 +191,23 @@ prove the actual user tab closed: inspect fresh inventory and an allowed native
 screenshot/AX view before choosing recovery. If DOM access is unavailable, record
 that limitation and the actual screenshot/AX evidence; do not call it DOM proof.
 Do not replay an uncertain submit or keep clicking through a detached handle.
+
+
+## Short Film starter submits immediately
+
+On an empty Imagine Agent canvas, **Short Film** immediately sent a canned request
+for three one-minute-film ideas, a main-character image for each, and a poster
+for each. The submitted prompt plus **Thinking** and **Stop** were observed on
+October 29 through native accessibility text and screenshots. DOM and passive
+network evidence were unavailable. This is a submitted Agent job, not a passive
+canvas initializer or an unsent prompt template. Other starters remain separate
+controls whose behavior must be inspected before use.
+
+For an already directed production, use the observed Files/Canvas controls and
+the prepared packet. Do not activate Short Film just to open the canvas. If it
+was activated unintentionally, request Stop once, then inspect a fresh state
+until the terminal outcome is known before submitting another job. The capture
+taken after this Stop request still reported Thinking and Stop in AX, while its
+screenshot showed the send-arrow control instead. This timing discrepancy does
+not establish a matched terminal state; cancellation completion and finished
+assets were not confirmed by those records.

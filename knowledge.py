@@ -54,6 +54,7 @@ BRANCHES = {
 }
 
 DESCRIPTIONS = {
+ 'Short Film':'Empty Agent canvas starter: immediately submits a canned request for three one-minute-film ideas, character images and posters. Native AX/screenshots verified submission on 2026-10-29; not a passive initializer. Stop was requested, but terminal cancellation and finished outputs were not confirmed.',
  'Upload':'Opens media toolbox on the main composer; in Files this is file import. Scope by surface.',
  'Upload media':'Main Imagine: verified first-image chooser. Agent toolbox click routed PNGs into Audio in a later run; use Canvas Upload Image and verify thumbnails. Do not reuse a surface-blind locator.',
  'Add images':'Toggles Agent attachment toolbox: generations, uploads, audio, references, connectors.',
