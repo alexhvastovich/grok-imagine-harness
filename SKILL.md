@@ -10,6 +10,33 @@ the relevant modules below, then follow their click paths in the current live UI
 The assistant directs images, composition, continuity and editing; Grok generates
 motion. User corrections override historical examples and defaults.
 
+## Execution index and resume tags
+
+First read the production's `RESUME.md` when present and its current manifest.
+Continue from the last verified state and the earliest pending prerequisite.
+Keep completed stages complete; revisit only work invalidated by a correction.
+Local files alone do not complete pending uploads, reference registration,
+canvas organization, composer configuration, generation or live verification.
+
+Use these tags for the same six stages defined below:
+
+| Tag | Stage | Supporting module |
+| --- | --- | --- |
+| `STAGE:01` | [Plan coverage](#1-plan-coverage-before-images) | [Project preparation](workflows/project-preparation.md) |
+| `STAGE:02` | [Review every planned frame](#2-check-continuity-across-all-planned-frames) | [Three-frame preflight](workflows/three-frame-preflight.md) |
+| `STAGE:03` | [Plan joins](#3-plan-smooth-joins-continuations-and-cuts) | [Join planning](workflows/join-planning.md) |
+| `STAGE:04` | [Verify UI and generate one shot](#4-verify-every-browser-action-and-generate-one-shot) | [Frame controls](workflows/frame-controls.md) |
+| `STAGE:05` | [Track takes and edits](#5-track-every-take-and-targeted-edit) | [Asset ledger](workflows/asset-ledger.md) |
+| `STAGE:06` | [Review and deliver](#6-review-the-sequence-and-hand-it-off) | [Review and edit](workflows/review-and-edit.md) |
+
+Keep identifiers separate and consistent in notes, manifests and canvas labels:
+`SHOT:s01`, `ROLE:FIRST|MIDDLE|LAST`, `TAKE:t01`, and
+`STATUS:prepared|submitted|playable|reviewed`. Use one actual value per tag, such
+as `STAGE:04 SHOT:s01 ROLE:MIDDLE TAKE:t01 STATUS:prepared`. A prepared frame or
+draft is not a submitted job; a playable result still needs its recorded review.
+Record which review was performed and any pending checks. These execution tags
+do not change the channel queue's status values or schema.
+
 ## Choose the task
 
 | Request | Read next | Work to complete |
